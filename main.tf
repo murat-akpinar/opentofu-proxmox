@@ -58,7 +58,9 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm_1" {
         bridge = "vmbr0"
     }  
 }
+# Ubuntu VM 1
 
+# Ubuntu VM 2
 resource "proxmox_virtual_environment_vm" "ubuntu_vm_2" {
     name = "ubuntu-vm-2" # Hostname 
     node_name = "pve" # Proxmox pve name
@@ -102,6 +104,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm_2" {
         bridge = "vmbr0"
     }  
 }
+# Ubuntu VM 2
 
 resource "proxmox_virtual_environment_file" "ubuntu_cloud_image" {
     content_type = "iso"
