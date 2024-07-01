@@ -2,7 +2,7 @@ terraform {
     required_providers {
         proxmox = {
             source = "registry.terraform.io/bpg/proxmox"
-            version = "0.57.1"
+            version = "0.60.1"
         }
     }
 }
@@ -12,6 +12,16 @@ provider "proxmox" {
     insecure = true
     username = "root@pam"
     password = "PASSWORD" # Promox root pasword
+}
+
+resource "proxmox_virtual_environment_file" "ubuntu_cloud_image" {
+    content_type = "iso"
+    datastore_id = "local"
+    node_name = "HomeLab" # Proxmox HomeLab name
+    source_file {
+        path = "iso/jammy-server-cloudimg-amd64.img"
+        # https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
+    }
 }
 
 # Ubuntu VM 1
@@ -105,13 +115,4 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm_2" {
     }  
 }
 # Ubuntu VM 2
-
-resource "proxmox_virtual_environment_file" "ubuntu_cloud_image" {
-    content_type = "iso"
-    datastore_id = "local"
-    node_name = "pve" # Proxmox pve name
-    source_file {        
-        path = "/home/murat/iso/jammy-server-cloudimg-amd64.img"
-    }
-}
 
